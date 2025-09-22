@@ -43,3 +43,13 @@
    https://www.data.go.kr/data/15080296/fileData.do#tab-layer-openapi
    중랑구 (API)
    https://www.data.go.kr/data/15040636/fileData.do#tab-layer-openapi
+
+   화장실:
+   경기도 : https://www.data.go.kr/data/15011425/openapi.do
+   대전 서구 : https://www.data.go.kr/data/15112469/openapi.do
+   대전 유성구 : https://www.data.go.kr/data/15108840/openapi.do
+   전북 전주 : https://www.data.go.kr/data/3036603/openapi.do
+   제주 : https://www.data.go.kr/data/15109235/openapi.do
+   부산 : https://www.data.go.kr/data/15070795/openapi.do
+
+   전국 공중화장실 데이터 (엑셀파일) : https://www.data.go.kr/data/15012892/standard.do
