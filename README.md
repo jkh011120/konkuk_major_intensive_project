@@ -11,38 +11,29 @@
    수유실 : https://sooyusil.com/home/39.htm
 
    흡연실 :
-   강북구 (API)
-   https://www.data.go.kr/data/15049030/fileData.do#tab-layer-openapi
-   강서구 (API)
-   https://www.data.go.kr/data/15037912/fileData.do#tab-layer-openapi
-   관악구 (파일)
-   https://www.data.go.kr/data/15040591/fileData.do
-   광진구 (API)
-   https://www.data.go.kr/data/15096573/openapi.do
-   금천구 (API)
-   https://www.data.go.kr/data/15053428/fileData.do#tab-layer-openapi
-   노원구 (API)
-   https://www.data.go.kr/data/15078097/fileData.do#tab-layer-openapi
-   동대문구 (API)
-   https://www.data.go.kr/data/15070168/fileData.do#tab-layer-openapi
-   동작구 (API)
-   https://www.data.go.kr/data/15049031/fileData.do#tab-layer-openapi
-   서대문구 (API)
-   https://www.data.go.kr/data/15040413/fileData.do#tab-layer-openapi
-   서초구 (API)
-   https://www.data.go.kr/data/15074379/fileData.do#tab-layer-openapi
-   성동구 (API)
-   https://www.data.go.kr/data/15053434/fileData.do#tab-layer-openapi
-   성북구 (API)
-   https://www.data.go.kr/data/15103853/fileData.do#tab-layer-openapi
-   용산구 (API)
-   https://www.data.go.kr/data/15073796/fileData.do#tab-layer-openapi
-   종로구 (API)
-   https://www.data.go.kr/data/15039323/fileData.do#tab-layer-openapi
-   중구 (API)
-   https://www.data.go.kr/data/15080296/fileData.do#tab-layer-openapi
-   중랑구 (API)
-   https://www.data.go.kr/data/15040636/fileData.do#tab-layer-openapi
+   은평구, 강남구, 도봉구, 강동구 남음
+구로구(실외) (API) https://www.data.go.kr/data/15069274/fileData.do#tab-layer-openapi
+마포구 (파일) https://www.data.go.kr/data/15068847/fileData.do
+송파구(실외) (파일) https://www.data.go.kr/data/15090343/fileData.do
+양천구 (API) https://www.data.go.kr/data/15040511/fileData.do#tab-layer-openapi
+영등포구(실외) (API) https://www.data.go.kr/data/15069051/fileData.do#tab-layer-openapi
+
+강북구 (API) https://www.data.go.kr/data/15049030/fileData.do#tab-layer-openapi
+강서구 (API) https://www.data.go.kr/data/15037912/fileData.do#tab-layer-openapi
+관악구 (파일) https://www.data.go.kr/data/15040591/fileData.do
+광진구 (API) https://www.data.go.kr/data/15096573/openapi.do
+금천구 (API) https://www.data.go.kr/data/15053428/fileData.do#tab-layer-openapi
+노원구 (API) https://www.data.go.kr/data/15078097/fileData.do#tab-layer-openapi
+동대문구 (API) https://www.data.go.kr/data/15070168/fileData.do#tab-layer-openapi
+동작구 (API) https://www.data.go.kr/data/15049031/fileData.do#tab-layer-openapi
+서대문구 (API) https://www.data.go.kr/data/15040413/fileData.do#tab-layer-openapi
+서초구 (API) https://www.data.go.kr/data/15074379/fileData.do#tab-layer-openapi
+성동구 (API) https://www.data.go.kr/data/15053434/fileData.do#tab-layer-openapi
+성북구 (API) https://www.data.go.kr/data/15103853/fileData.do#tab-layer-openapi
+용산구 (API) https://www.data.go.kr/data/15073796/fileData.do#tab-layer-openapi
+종로구 (API) https://www.data.go.kr/data/15039323/fileData.do#tab-layer-openapi
+중구 (API) https://www.data.go.kr/data/15080296/fileData.do#tab-layer-openapi
+중랑구 (API) https://www.data.go.kr/data/15040636/fileData.do#tab-layer-openapi
 
    화장실:
    경기도 : https://www.data.go.kr/data/15011425/openapi.do
