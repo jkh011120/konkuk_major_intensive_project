@@ -24,6 +24,33 @@
 	- 작성한 리뷰 글 찾기<br>
 	- 장소 제안<br><br>
 
+# 객체 정보
+장소 data <br>
+	- 장소 이름 :  string <br>
+	- 장소 주소 : string <br>
+	- (좌표 x,y) : (x, y) class 만들기 <br>
+	- 장소 카테고리 : ENUM class 만들기 <br>
+	- 평균 평점 : float <br>
+	- 리뷰 갯수 :  int <br>
+	- 장소 특징 : string <br>
+	- 리뷰 리스트 : 리뷰 데이터의 list 형식	 <br><br>
+
+리뷰 data <br>
+	- 유저 아이디 : string <br>
+	- 장소 이름 :  string <br>
+	- 컨텐츠 : string  <br>
+	- 리뷰 점수 : float  <br>
+	- 날짜 :  localdatetime : db : long <br>
+	- 사진 1장만 :  string <br> 
+
+계정 data
+	- 아이디 : string <br> 
+	- 비번 : string  <br>
+	- 즐겨찾기 : 장소 data를 list로... <br><br>
+
+
+
+
 
 # data모음
    ... 이후 진행 상황 확인 후, 추가 기능 구현.
