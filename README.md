@@ -38,6 +38,7 @@
 리뷰 data <br>
 	- 유저 아이디 : string <br>
 	- 장소 이름 :  string <br>
+	- 장소 카테고리 : ENUM class 만들기<br>
 	- 컨텐츠 : string  <br>
 	- 리뷰 점수 : float  <br>
 	- 날짜 :  localdatetime : db : long <br>
