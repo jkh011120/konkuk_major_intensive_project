@@ -41,7 +41,7 @@
 	- 컨텐츠 : string  <br>
 	- 리뷰 점수 : float  <br>
 	- 날짜 :  localdatetime : db : long <br>
-	- 사진 1장만 :  string <br> 
+	- 사진 1장만 :  string <br> <br>
 
 계정 data
 	- 아이디 : string <br> 
