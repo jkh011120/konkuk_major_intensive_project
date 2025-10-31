@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "750552475783",
+    "project_id": "konkuk-major-intensive-project",
+    "storage_bucket": "konkuk-major-intensive-project.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750552475783:android:b16b6cd8ef5aa44f02f022",
+        "android_client_info": {
+          "package_name": "com.example.konkuk_major_intensive_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLj3PkJ8_WbGkAqLidhgYDoMOfpzZLAQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
