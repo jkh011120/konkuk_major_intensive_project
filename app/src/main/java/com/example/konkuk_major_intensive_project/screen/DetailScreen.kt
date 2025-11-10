@@ -47,9 +47,11 @@ import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.konkuk_major_intensive_project.R
 import com.example.konkuk_major_intensive_project.ViewModel.DetailScreenViewModel
 import com.example.konkuk_major_intensive_project.ViewModel.UserViewModel
 import com.example.konkuk_major_intensive_project.model.FacilityDetail
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
