@@ -56,7 +56,7 @@ fun RegisterScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "WellFit 회원가입",
+            text = "PublicMap 회원가입",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
