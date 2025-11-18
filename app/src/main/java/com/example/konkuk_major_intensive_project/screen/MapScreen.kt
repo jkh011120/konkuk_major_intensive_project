@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
@@ -26,7 +27,7 @@ import com.naver.maps.map.compose.rememberFusedLocationSource
 
 @OptIn(ExperimentalNaverMapApi::class, ExperimentalPermissionsApi::class)
 @Composable
-fun MapScreen(){
+fun MapScreen(navController: NavController){
     val context = LocalContext.current
     val permissionsState = rememberMultiplePermissionsState(
         permissions = listOf(

@@ -52,7 +52,7 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "WellFit 로그인",
+            text = "Public Map 로그인",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
