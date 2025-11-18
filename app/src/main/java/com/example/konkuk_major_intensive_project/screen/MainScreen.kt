@@ -58,7 +58,7 @@ fun MainScreenBody(
         Spacer(modifier = Modifier.height(70.dp))
 
         Text(
-            text = "WellFit",
+            text = "Public Map",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )

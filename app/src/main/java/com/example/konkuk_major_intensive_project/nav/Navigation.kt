@@ -1,9 +1,6 @@
 package com.example.konkuk_major_intensive_project.nav
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -12,11 +9,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.konkuk_major_intensive_project.ViewModel.UserViewModel
+import com.example.konkuk_major_intensive_project.model.FacilityDetail
 import com.example.konkuk_major_intensive_project.screen.DetailScreen
 import com.example.konkuk_major_intensive_project.screen.FavoriteScreen
 import com.example.konkuk_major_intensive_project.screen.LoginScreen
-import com.google.gson.Gson
-import kotlin.jvm.java
+import com.example.konkuk_major_intensive_project.screen.MainScreen
+import com.example.konkuk_major_intensive_project.screen.MapScreen
+import com.example.konkuk_major_intensive_project.screen.ProfileScreen
+import com.example.konkuk_major_intensive_project.screen.RegisterScreen
+import com.example.konkuk_major_intensive_project.screen.SearchScreen
 
 
 @Composable
@@ -24,17 +25,19 @@ fun NavigationGraph(navController: NavHostController){
     val userViewModel: UserViewModel = viewModel()
     val context = LocalContext.current
 
+    val allFacilities = mutableListOf<FacilityDetail>()
+
     // allFacilities를 AppNavHost에서 생성
-    val allFacilities by remember {
-        mutableStateOf(
-            run {
-                val jsonString = context.assets.open("facility.json").bufferedReader().use { it.readText() }
-                val gson = Gson()
-                val vworldResponse = gson.fromJson(jsonString, com.example.mobile2team.Data.assets.VWorldResponse::class.java)
-                vworldResponse.response.result.featureCollection.features.map { it.toFacilityDetail() }
-            }
-        )
-    }
+//    val allFacilities by remember {
+//        mutableStateOf(
+//            run {
+//                val jsonString = context.assets.open("facility.json").bufferedReader().use { it.readText() }
+//                val gson = Gson()
+//                val vworldResponse = gson.fromJson(jsonString, com.example.mobile2team.Data.assets.VWorldResponse::class.java)
+//                vworldResponse.response.result.featureCollection.features.map { it.toFacilityDetail() }
+//            }
+//        )
+//    }
 
     NavHost(
         navController = navController,
@@ -44,7 +47,7 @@ fun NavigationGraph(navController: NavHostController){
             MainScreen(navController = navController, userViewModel)
         }
         composable("search") {
-            SearchScreen(navController = navController)
+            MapScreen(navController = navController)
         }
 
         composable("login") {
@@ -82,7 +85,7 @@ fun NavigationGraph(navController: NavHostController){
         composable("review/{facilityId}") { backStackEntry ->
             val facilityId = backStackEntry.arguments?.getString("facilityId")
             if (facilityId != null) {
-                ReviewScreen(facilityId = facilityId)
+//                ReviewScreen(facilityId = facilityId)
             }
         }
         composable(
@@ -97,11 +100,11 @@ fun NavigationGraph(navController: NavHostController){
             val lng = backStack.arguments!!.getFloat("lng")
             val name = backStack.arguments!!.getString("name") ?: ""
 
-            RouteScreen(
-                destinationName = name,
-                destinationLat = lat.toDouble(),
-                destinationLng = lng.toDouble()
-            )
+//            RouteScreen(
+//                destinationName = name,
+//                destinationLat = lat.toDouble(),
+//                destinationLng = lng.toDouble()
+//            )
         }
 
 

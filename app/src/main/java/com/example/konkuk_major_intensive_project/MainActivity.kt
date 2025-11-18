@@ -8,7 +8,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.konkuk_major_intensive_project.screen.MapScreen
+import androidx.navigation.compose.rememberNavController
+import com.example.konkuk_major_intensive_project.nav.NavigationGraph
 import com.example.konkuk_major_intensive_project.ui.theme.Konkuk_major_intensive_projectTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +17,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MapScreen()
+            val navController = rememberNavController()
+            NavigationGraph(navController)
+//            MapScreen()
 //            Konkuk_major_intensive_projectTheme {
 //                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 //                    Greeting(
