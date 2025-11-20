@@ -48,11 +48,21 @@ import androidx.core.net.toUri
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.konkuk_major_intensive_project.R
+import com.example.konkuk_major_intensive_project.Util.FacilityInfoPanel
 import com.example.konkuk_major_intensive_project.ViewModel.DetailScreenViewModel
 import com.example.konkuk_major_intensive_project.ViewModel.UserViewModel
 import com.example.konkuk_major_intensive_project.model.FacilityDetail
 
-
+fun makePhoneCall(context: Context, phoneNumber: String) {
+    try {
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = "tel:$phoneNumber".toUri()
+        }
+        context.startActivity(intent)
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+}
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
@@ -91,12 +101,19 @@ fun DetailScreen(
             contentAlignment = Alignment.Center
         ) {
             uiState.facility?.let { facility ->
-                val isFavorite = favorites[facility.id] == true
+
+                // ★ id가 null이면 즐겨찾기 동작 불가 → false
+                val isFavorite =
+                    if (facility.id != null) favorites[facility.id] == true else false
+
                 val isLoggedIn = userViewModel.isLoggedIn
+
                 FacilityInfoPanel(
                     facility = facility.copy(isFavorite = isFavorite),
                     onToggleFavorite = {
-                        userViewModel.toggleFavorite(facility.id) { }
+                        facility.id?.let { safeId ->
+                            userViewModel.toggleFavorite(safeId) {}
+                        }
                     },
                     onCallPhone = { phoneNumber -> makePhoneCall(context, phoneNumber) },
                     navController = navController,
@@ -105,139 +122,5 @@ fun DetailScreen(
             }
         }
     }
-}
 
-/**
- * 시설 정보 패널 - 복지시설 상세 정보를 표시하는 카드
- */
-@Composable
-fun FacilityInfoPanel(
-    facility: FacilityDetail,
-    onToggleFavorite: () -> Unit,
-    onCallPhone: (String) -> Unit,
-    navController: NavController? = null,
-    isLoggedIn: Boolean = true,
-    modifier: Modifier = Modifier
-) {
-    val context = LocalContext.current
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        shape = RoundedCornerShape(12.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState())
-                .fillMaxSize()
-                .background(Color.White)
-        ) {
-            // 정보 표시 Row
-            Row(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    Text(facility.name, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                    Text(facility.address, fontSize = 16.sp, color = Color.DarkGray)
-                    Text(
-                        facility.phoneNumber ?: "전화번호 정보 없음",
-                        fontSize = 16.sp,
-                        color = Color.Gray
-                    )
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        Icon(Icons.Default.Star, contentDescription = null, tint = Color(0xFFFFD700))
-                        Text("${facility.averageRating ?: 0.0f}", fontSize = 16.sp)
-                    }
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Text("${facility.reviewCount}개 리뷰", fontSize = 16.sp)
-                        TextButton(onClick = {
-                            navController?.navigate("review/${facility.id}")
-                        }) {
-                            Text("리뷰 보기", fontSize = 14.sp, color = Color.Blue)
-                        }
-                    }
-                }
-
-                Box(
-                    modifier = Modifier
-                        .size(width = 120.dp, height = 100.dp)
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(Color.LightGray)
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.image1),
-                        contentDescription = "기관 사진",
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // 기능 버튼 Row
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                IconButton(onClick = {
-                    if (isLoggedIn) {
-                        onToggleFavorite()
-                    } else {
-                        android.widget.Toast.makeText(context, "로그인을 해주세요", android.widget.Toast.LENGTH_SHORT).show()
-                    }
-                }) {
-                    Icon(
-                        painter = painterResource(
-                            id = if (facility.isFavorite)
-                                R.drawable.baseline_star_24
-                            else
-                                R.drawable.baseline_star_outline_24
-                        ),
-                        contentDescription = "즐겨찾기",
-                        tint = if (facility.isFavorite) Color(0xFFFFD700) else Color.Gray
-                    )
-                }
-
-                IconButton(onClick = {
-                    facility.phoneNumber?.let { onCallPhone(it) }
-                }) {
-                    Icon(Icons.Default.Phone, contentDescription = "전화", tint = Color.Gray)
-                }
-
-                IconButton(onClick = {
-                    navController?.navigate("route/${facility.latitude}/${facility.longitude}/${facility.name}")
-                }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.baseline_directions_bus_24),
-                        contentDescription = "교통 정보",
-                        tint = Color.Gray
-                    )
-                }
-            }
-        }
-    }
-}
-
-fun makePhoneCall(context: Context, phoneNumber: String) {
-    try {
-        val intent = Intent(Intent.ACTION_DIAL).apply {
-            data = "tel:$phoneNumber".toUri()
-        }
-        context.startActivity(intent)
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
 }
