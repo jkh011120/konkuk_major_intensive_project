@@ -22,6 +22,10 @@
             android:name="com.naver.maps.map.NCP_KEY_ID"
             android:value="${NAVER_CLIENT_ID}"/>
 
+        <meta-data
+            android:name="com.naver.maps.map.NCP_KEY_SECRET"
+            android:value="${NAVER_CLIENT_SECRET}" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
