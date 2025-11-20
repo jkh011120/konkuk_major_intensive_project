@@ -12,13 +12,15 @@ import kotlinx.coroutines.flow.StateFlow
 class FacilityViewModel : ViewModel() {
     private val _facilities = MutableStateFlow<List<FacilityDetail>>(emptyList())
     val facilities: StateFlow<List<FacilityDetail>> = _facilities
+    
+    private val FIREBASE_DATABASE_URL = "https://konkuk-major-intensive-project-default-rtdb.firebaseio.com"
 
     init {
         fetchFacilities()
     }
 
     private fun fetchFacilities() {
-        val database = FirebaseDatabase.getInstance()
+        val database = FirebaseDatabase.getInstance(FIREBASE_DATABASE_URL)
         val facilitiesRef = database.getReference("facilities")
         facilitiesRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
