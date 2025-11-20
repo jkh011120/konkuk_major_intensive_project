@@ -119,7 +119,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(8.dp))
 
         Row {
-            Text("WellFit 회원이 아니라면? ")
+            Text("PublicMap 회원이 아니라면? ")
             Text(
                 text = "회원가입",
                 color = Color(0xFF007F00),

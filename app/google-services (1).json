@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "48120425877",
+    "project_id": "publicmap-15734",
+    "storage_bucket": "publicmap-15734.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48120425877:android:60c5f7ca80b56114181a9c",
+        "android_client_info": {
+          "package_name": "com.example.konkuk_major_intensive_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1oZyFTp7EWVg6oxtsbPhj0YNqqP9Si6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

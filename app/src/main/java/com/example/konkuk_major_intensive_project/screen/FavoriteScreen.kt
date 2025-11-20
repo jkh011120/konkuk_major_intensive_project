@@ -35,10 +35,6 @@ import androidx.navigation.NavHostController
 import com.example.konkuk_major_intensive_project.ViewModel.UserViewModel
 import com.example.konkuk_major_intensive_project.model.FacilityDetail
 
-/**
- * 즐겨찾기 목록 화면，사용자가 즐겨찾기한 복지시설 목록을 표시하고 관리할 수 있습니다
- * 收藏列表页面，显示和管理用户收藏的福利设施列表
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavoriteScreen(
@@ -49,10 +45,12 @@ fun FavoriteScreen(
     // 1. 즐겨찾기된 facilityId만 추출
     val favoriteIds = userViewModel.favorites.filterValues { it }.keys
 
-    // 2. 즐겨찾기된 시설만 리스트로 추출
-    val favoriteFacilities = allFacilities.filter { it.id in favoriteIds }
+    // 2. 즐겨찾기된 시설만 리스트로 추출 (id nullable 대응)
+    val favoriteFacilities = allFacilities.filter { facility ->
+        val id = facility.id
+        id != null && favoriteIds.contains(id)
+    }
 
-    // 3. UI에 favoriteFacilities를 사용
     Scaffold(
         topBar = {
             TopAppBar(
@@ -63,7 +61,6 @@ fun FavoriteScreen(
                         fontWeight = FontWeight.Bold
                     )
                 },
-
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "뒤로 가기")
@@ -74,14 +71,18 @@ fun FavoriteScreen(
     ) { paddingValues ->
         if (favoriteFacilities.isEmpty()) {
             Box(
-                modifier = Modifier.fillMaxSize().padding(paddingValues),
-                contentAlignment = androidx.compose.ui.Alignment.Center
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
+                contentAlignment = Alignment.Center
             ) {
                 Text("즐겨찾기한 시설이 없습니다.")
             }
         } else {
             LazyColumn(
-                modifier = Modifier.fillMaxSize().padding(paddingValues),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
@@ -90,7 +91,11 @@ fun FavoriteScreen(
                         facility = facility,
                         isEditMode = false,
                         isSelected = false,
-                        onItemClick = { navController.navigate("detail/${facility.id}") }
+                        onItemClick = {
+                            facility.id?.let { id ->
+                                navController.navigate("detail/$id")
+                            }
+                        }
                     )
                 }
             }
@@ -98,10 +103,6 @@ fun FavoriteScreen(
     }
 }
 
-/**
- * 즐겨찾기 항목 컴포저블
- * 收藏项目组件
- */
 @Composable
 private fun FavoriteItem(
     facility: FacilityDetail,
@@ -128,20 +129,20 @@ private fun FavoriteItem(
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
-            verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = facility.name,
+                    text = facility.name ?: "이름 정보 없음",
                     fontSize = MaterialTheme.typography.titleMedium.fontSize,
                     fontWeight = MaterialTheme.typography.titleMedium.fontWeight,
                     maxLines = 1
                 )
                 Text(
-                    text = facility.address,
+                    text = facility.address ?: "주소 정보 없음",
                     fontSize = MaterialTheme.typography.bodyMedium.fontSize,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1
@@ -151,10 +152,6 @@ private fun FavoriteItem(
     }
 }
 
-/**
- * 빈 즐겨찾기 목록 표시
- * 空收藏列表显示
- */
 @Composable
 private fun EmptyFavoritesContent() {
     Box(

@@ -2,9 +2,9 @@ package com.example.konkuk_major_intensive_project.model
 
 data class FacilityDetail(
     //외부 데이터 정보
-    val id: String,                                // 시설 고유 ID / 设施唯一ID
-    val name: String,                            // 시설 이름 / 设施名称
-    val address: String,                         // 상세 주소 / 详细地址
+    val id: String? = null,                      // 시설 고유 ID / 设施唯一ID
+    val name: String? = null,                    // 시설 이름 / 设施名称
+    val address: String? = null,                 // 상세 주소 / 详细地址
     val phoneNumber: String? = null,             // 전화번호 / 电话号码
     val latitude: Double? = null,                // 위도 / 纬度
     val longitude: Double? = null,               // 경도 / 经度
