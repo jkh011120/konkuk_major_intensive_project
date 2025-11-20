@@ -1,17 +1,32 @@
 package com.example.konkuk_major_intensive_project.screen
 
 import android.Manifest
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Face
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,7 +41,15 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
-import com.naver.maps.map.compose.*
+import com.naver.maps.map.compose.ExperimentalNaverMapApi
+import com.naver.maps.map.compose.LocationTrackingMode
+import com.naver.maps.map.compose.MapProperties
+import com.naver.maps.map.compose.MapUiSettings
+import com.naver.maps.map.compose.Marker
+import com.naver.maps.map.compose.NaverMap
+import com.naver.maps.map.compose.rememberCameraPositionState
+import com.naver.maps.map.compose.rememberFusedLocationSource
+import com.naver.maps.map.compose.rememberMarkerState
 
 enum class BottomTab(val label: String) {
     NURSING("수유실"),
@@ -43,7 +66,7 @@ fun MapScreen(
     facilityViewModel: FacilityViewModel = viewModel()   // ⭐ Firebase ViewModel 사용
 ) {
     val context = LocalContext.current
-
+    var path by remember { mutableStateOf<List<LatLng>>(emptyList()) }
     // ▼ 하단 탭 상태
     var selectedTab by remember { mutableStateOf(BottomTab.NURSING) }
 
